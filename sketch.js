@@ -14,9 +14,12 @@ let frequency;
 const simplex = new SimplexNoise();
 
 
+
 function setup() {
+ 
   //template for canvas while printing and exporting/exhition on web/minimal
   canvas = createCanvas(512, 512); // will export as 512x512
+
   canvas.style("margin", "auto");
   canvas.style("margin-top", "5%");
   canvas.style("display", "flex");
@@ -25,7 +28,8 @@ function setup() {
   canvas.style("border-radius", "10px");
   canvas.style("position", "relative");
   canvas.style("box-shadow", "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)");
-  // canvas.style("zoom", "0.5");
+
+
   canvas.style('dpi', '300');
   canvas.style('bleed', '1/8');
 
@@ -33,24 +37,30 @@ function setup() {
       
   mouseX = width /2;
   mouseY = height /2;
+
+
+ 
+  
 }
 
 function draw() {
-  //clear();
-
+ 
+  // clear();
   background(255);
+
+
   
-  const frequency = lerp(minFrequency, maxFrequency, mouseX / width);
-  const amplitude = lerp(minAmplitude, maxAmplitude, mouseY / height);
+  const frequency = lerp(minFrequency, maxFrequency, mouseX /width);
+  const amplitude = lerp(minAmplitude, maxAmplitude, mouseY /height);
   
   const dim = Math.min(width, height);
   
-  // Draw the background
+
 fill(120);
-  stroke(0);
-  strokeWeight(dim * 0.0075);
+stroke(0);
+strokeWeight(dim * 0.0095);
   
-  const time = millis() / 1000;
+  const time = millis()/1000;
   const rows = 20;
 
   // Draw each line
@@ -107,10 +117,24 @@ function drawNoiseLine (opt = {}) {
   endShape();
 }
 
+function windowResized() {
+  const windowWidth = window.innerWidth;
+  if (windowWidth < 900) {
+    resizeCanvas(windowWidth * 0.85, windowWidth* 0.85);
+   
+   
+    canvas.style("margin", "auto");
+    canvas.style("margin-top", "10%");
+  
+  } else {
+    canvas.style("width", "524px");
+    canvas.style("height", "524px");
+  }
+}
 
 function keyPressed() {
   if (key == 'S' || key == 's') {
-    saveCanvas(canvas, 'ray-casting-clock', 'png');
+    saveCanvas(canvas, 'Line_waves', 'png');
   }
 }
     

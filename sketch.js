@@ -18,7 +18,7 @@ const simplex = new SimplexNoise();
 function setup() {
  
   //template for canvas while printing and exporting/exhition on web/minimal
-  canvas = createCanvas(512, 512); // will export as 512x512
+  canvas = createCanvas(1024, 1024); // will export as 512x512
 
   canvas.style("margin", "auto");
   canvas.style("margin-top", "5%");
@@ -28,19 +28,13 @@ function setup() {
   canvas.style("border-radius", "10px");
   canvas.style("position", "relative");
   canvas.style("box-shadow", "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)");
-
-
+  canvas.style("zoom", "0.5");
   canvas.style('dpi', '300');
   canvas.style('bleed', '1/8');
-
-    noCursor();
+  noCursor();
       
   mouseX = width /2;
   mouseY = height /2;
-
-
- 
-  
 }
 
 function draw() {
@@ -121,15 +115,15 @@ function windowResized() {
   const windowWidth = window.innerWidth;
   if (windowWidth < 900) {
     resizeCanvas(windowWidth * 0.85, windowWidth* 0.85);
-   
-   
     canvas.style("margin", "auto");
     canvas.style("margin-top", "10%");
   
   } else {
-    canvas.style("width", "524px");
-    canvas.style("height", "524px");
+    const windowWidth = window.innerWidth;
+   
+      resizeCanvas(windowWidth, windowWidth);
   }
+  
 }
 
 function keyPressed() {
